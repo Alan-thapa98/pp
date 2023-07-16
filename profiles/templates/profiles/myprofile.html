@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% url 'profiles:my-profile-view-edit' as path_to_edit_profile %}
+{% block title %}
+my profile
+{% endblock title %}
+
+{% block body %}
+
+<div class="ui grid inverted container container_desigen_bg">
+    {% if confirm %}
+    <div class="ui green message">Your profile has been updated</div>
+    {% endif %}
+
+    <!-- these is for the user image and for the profile pic -->
+    <div class="row" style="
+    background-image: url('{{profile.avatar.url}}');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    color: #000;
+    border-radius: 2px;
+
+
+">
+        <div class="five wide column">
+
+        </div>
+        <div class="six wide column">
+            <div style="text-align: center;">
+                <img src="{{profile.avatar.url}}" style="align-content: center;
+            height: 13rem;
+            width: 13rem;
+            border: 7px solid rgba(255, 255, 255, .15);
+            border-radius: 50%;
+             margin-top:6rem;
+        ">
+            </div>
+        </div>
+        <div class="four wide column">
+        </div>
+    </div>
+
+    <!-- name and otehrs -->
+    <div style="height:10rem; " class="">
+        <h1 style="text-align: center; text-transform: capitalize;">
+            {{profile.first_name}}
+            {{profile.last_name}}
+        </h1>
+        <p style="text-align: center;"> {{profile.bio}}</p>
+        <p style="text-align: center;"><a href="/profiles/myprofile/profile_edite"><b>Edite Your Pro</b></a></p>
+    </div>
+
+
+
+
+
+
+    <div class="ui segment">
+        <!-- <h3>my profile: {{request.user}}</h3> -->
+        <div class="ui grid">
+            <div class='row'>
+                <div class='six wide column'>
+                    <!--  <img class="ui medium rounded image" src="{{profile.avatar.url}}">
+                <a href="">{{profile.avatar.url}}</a>
+                <a href="">{{profile.avatar}}</a>
+                <div class="row mt-5"> -->
+                    <!-- <button class='ui secondary button' id='modal-btn'>Update your profile</button> -->
+                    <!-- <a href="{{path_to_edit_profile}}" class='ui secondary button' id='modal-btn'>Update your
+                        profile</a>
+                    <a href="/profiles/myprofile/profile_edite" class='ui primary button' id='modal-btn'>Update your
+                        profile</a> -->
+                    <h1>six</h1>
+                </div>
+
+                <div class="ten wide column">
+                    <table class="ui table">
+                        <tbody>
+                            <tr>
+                                <td>username</td>
+                                <td>{{profile.user}}</td>
+                            </tr>
+                            <tr>
+                                <td>first name</td>
+                                <td>{{profile.first_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>last name</td>
+                                <td>{{profile.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>bio</td>
+                                <td>{{profile.bio}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>friends:</td>
+                                <td>
+                                    <ul>
+                                        {% for friend in profile.get_friends %}
+                                        <li>{{friend}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>Post</td>
+                                <td>{{profile.get_posts_no}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock body %}
